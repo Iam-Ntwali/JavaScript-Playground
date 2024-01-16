@@ -9,4 +9,15 @@ function listArrayItems(arr) {
 }
 listArrayItems(colors);
 
+// EXERCISES PRACTICE
+function letterFinder(word, match) {
+  for (let i = 0; i < word.length; i++) {
+    if (word[i] === match) {
+      console.log(`found the match ${match} at Index ${i}`);
+    } else {
+      console.log(`--No match found at ${i}`);
+    }
+  }
+}
 
+letterFinder('test', 't');
