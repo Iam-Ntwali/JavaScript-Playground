@@ -23,3 +23,18 @@
 // letterFinder('test', 't');
 
 // OBJECTS
+const clothes = [];
+clothes.push('pants', 'hoddies', 'T-Shirt', 'Polo', 'Short');
+console.log(clothes);
+clothes.pop();
+console.log(clothes);
+clothes.push('long pants');
+console.log(clothes);
+console.log(clothes[2]);
+
+const favCar = {};
+console.log(favCar);
+favCar.color = 'Black';
+console.log(favCar);
+favCar.covertible = 'Nissan';
+console.log(favCar);
