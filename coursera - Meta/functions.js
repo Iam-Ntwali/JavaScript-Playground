@@ -23,18 +23,38 @@
 // letterFinder('test', 't');
 
 // OBJECTS
-const clothes = [];
-clothes.push('pants', 'hoddies', 'T-Shirt', 'Polo', 'Short');
-console.log(clothes);
-clothes.pop();
-console.log(clothes);
-clothes.push('long pants');
-console.log(clothes);
-console.log(clothes[2]);
+// const clothes = [];
+// clothes.push('pants', 'hoddies', 'T-Shirt', 'Polo', 'Short');
+// console.log(clothes);
+// clothes.pop();
+// console.log(clothes);
+// clothes.push('long pants');
+// console.log(clothes);
+// console.log(clothes[2]);
 
-const favCar = {};
-console.log(favCar);
-favCar.color = 'Black';
-console.log(favCar);
-favCar.covertible = 'Nissan';
-console.log(favCar);
+// const favCar = {};
+// console.log(favCar);
+// favCar.color = 'Black';
+// console.log(favCar);
+// favCar.covertible = 'Nissan';
+// console.log(favCar);
+
+// Error prevention in JS
+function addTwoNums(a, b) {
+  try {
+    if (typeof a !== 'number') {
+      throw new ReferenceError('first argument is not a number');
+    }
+    else if (typeof b !== 'number') {
+
+      throw new ReferenceError('second argument is not a number');
+
+    } else {
+      console.log(a + b);
+    }
+  } catch (e) {
+    console.log('Error!', e);
+  }
+}
+
+addTwoNums(5, 5);
