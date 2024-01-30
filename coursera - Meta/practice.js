@@ -17,3 +17,13 @@ const name = 'Good Morning and Hello World';
 const result4 = name.split('');
 const removeDuplicates = new Set(result4);
 console.log(removeDuplicates);
+
+var h1 = document.createElement('h1')
+h1.innerText = "Type into the input to make this text change"
+
+var input = document.createElement('input')
+input.setAttribute('type', 'text')
+
+document.body.innerText = '';
+document.body.appendChild(h1);
+document.body.appendChild(input);
