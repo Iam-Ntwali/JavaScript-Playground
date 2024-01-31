@@ -27,3 +27,7 @@ input.setAttribute('type', 'text')
 document.body.innerText = '';
 document.body.appendChild(h1);
 document.body.appendChild(input);
+
+input.addEventListener('change', function () {
+  h1.innerText = input.value
+})
