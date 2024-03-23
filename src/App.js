@@ -11,6 +11,7 @@ const CATEGORIES = [
   { name: "news", color: "#8b5cf6" },
 ];
 
+// Manual Data
 const initialFacts = [
   {
     id: 1,
