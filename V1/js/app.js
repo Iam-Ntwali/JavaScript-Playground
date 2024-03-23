@@ -73,22 +73,20 @@ async function loadFacts() {
 
 
 function createFactsList(dataArray) {
-  const htmlArr = dataArray.map(
-    (fact) => `<li class='fact'>
-    <p>
-      ${fact.text}
-      <a
-        class="source"
-        href="${fact.source}"
-        target="_blank">(source)
-      </a>
-    </p>
-    <span
-      class="tag"
-      style="background-color: ${CATEGORIES.find(cat => cat.name === fact.category).color
-      }">${fact.category}
-    </span>
-  </li>`
+  const htmlArr = dataArray.map((fact) =>
+    `<li class='fact'>
+      <p> ${fact.text}
+        <a
+          class="source"
+          href="${fact.source}"
+          target="_blank">(source)
+        </a>
+      </p>
+      <span
+        class="tag"
+        style="background-color: ${CATEGORIES.find(cat => cat.name === fact.category).color}">${fact.category}
+      </span>
+    </li>`
   );
   // console.log(htmlArr);
   const html = htmlArr.join('');

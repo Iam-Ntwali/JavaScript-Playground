@@ -56,7 +56,7 @@ const initialFacts = [
   }
 ];
 
-// < !---------------- component start ---------------->
+// < !----------------  main start ---------------->
 function App() {
   return (
     // JSX fragment
@@ -83,13 +83,29 @@ function App() {
     </>
   );
 }
-// <!----------------component end---------------->
+// <!---------------- main end---------------->
 
+// <!---------------- components start ---------------->
 function NewFactForm() {
   return <form className='fact-form'>Fact Form</form>
 }
+
 function CategoryFilter() {
-  return <aside>category Filter</aside>;
+  return <aside>
+    <ul>
+      <li className="category">
+        <button className="btn btn__all-categories">All</button>
+      </li>
+      {CATEGORIES.map((cat) => (
+        <li key={cat.name} className="category" >
+          <button
+            className="btn btn__category"
+            style={{ backgroundColor: cat.color }}>{cat.name}
+          </button>
+        </li>
+      ))}
+    </ul>
+  </aside >;
 }
 
 function FactList() {
@@ -111,7 +127,7 @@ function FactList() {
 
 }
 
-// Props
+// Fact List Props
 function Fact({ fact }) {
   return (
     <li key={fact.id} className='fact'>
