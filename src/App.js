@@ -62,7 +62,7 @@ function App() {
   return (
     // JSX fragment
     <>
-      <Header setShowForm={setShowForm} />
+      <Header showFormState={showForm} setShowFormState={setShowForm} />
 
       {showForm ? <NewFactForm /> : null}
 
@@ -76,7 +76,7 @@ function App() {
 // <!---------------- main end---------------->
 
 // <!---------------- components start ----------------
-function Header({ setShowForm }) {
+function Header({ showFormState, setShowFormState }) {
   return (
     <header header className="header" >
       <div className="logo">
@@ -90,8 +90,8 @@ function Header({ setShowForm }) {
       <button
         id="btn__open"
         className="btn btn-large"
-        onClick={() => setShowForm((isShowing) => !isShowing)}>
-        Share a fact
+        onClick={() => setShowFormState((isShowing) => !isShowing)}>
+        {showFormState ? 'Close' : 'Share a fact'}
       </button>
     </header>
   )
