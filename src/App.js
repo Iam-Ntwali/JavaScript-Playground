@@ -104,8 +104,36 @@ function NewFactForm() {
 
   const textInputLimit = text.length;
 
+  // fn to handle submit
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    function isValidHttpsURL(text) { // Check if source is a valid URL
+      let url;
+      try {
+        url = new URL(text);
+      } catch (_) {
+        return false;
+      }
+      return url.protocol === 'https:' || url.protocol === 'http:';
+    }
+
+    if (text && isValidHttpsURL(source) && category && textInputLimit <= 200) {
+      const newFact = {
+        id: Math.round(Math.random() * 1000),
+        text,
+        source,
+        category,
+        votesInteresting: 0,
+        votesMindblowing: 0,
+        votesFalse: 0,
+        createdIn: new Date().getCurrentYear(),
+      }
+    }
+  }
+
   return (
-    <form className='fact-form'>
+    <form className='fact-form' onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="Share a fact with the world..."
