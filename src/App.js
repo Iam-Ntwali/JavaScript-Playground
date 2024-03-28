@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './main.css';
 
+// Manual Data
 const CATEGORIES = [
   { name: "technology", color: "#3b82f6" },
   { name: "science", color: "#16a34a" },
@@ -11,8 +12,6 @@ const CATEGORIES = [
   { name: "history", color: "#f97316" },
   { name: "news", color: "#8b5cf6" },
 ];
-
-// Manual Data
 const initialFacts = [
   {
     id: 1,
@@ -57,29 +56,13 @@ const initialFacts = [
   }
 ];
 
-// < !----------------  main start ---------------->
+// < !----------------  main app component start ---------------->
 function App() {
   const [showForm, setShowForm] = useState(false);
   return (
     // JSX fragment
     <>
-      {/* Headers*/}
-      <header className="header">
-        <div className="logo">
-          <img
-            src="/logo.png"
-            alt="logo"
-          />
-          <h1>Today's Facts 📌</h1>
-        </div>
-
-        <button
-          id="btn__open"
-          className="btn btn-large"
-          onClick={() => setShowForm(true)}>
-          Share a fact
-        </button>
-      </header>
+      <Header setShowForm={setShowForm} />
 
       {showForm ? <NewFactForm /> : null}
 
@@ -92,7 +75,28 @@ function App() {
 }
 // <!---------------- main end---------------->
 
-// <!---------------- components start ---------------->
+// <!---------------- components start ----------------
+function Header({ setShowForm }) {
+  return (
+    <header header className="header" >
+      <div className="logo">
+        <img
+          src="/logo.png"
+          alt="logo"
+        />
+        <h1>Today's Facts 📌</h1>
+      </div>
+
+      <button
+        id="btn__open"
+        className="btn btn-large"
+        onClick={() => setShowForm((isShowing) => !isShowing)}>
+        Share a fact
+      </button>
+    </header>
+  )
+}
+
 function NewFactForm() {
   return <form className='fact-form'>Fact Form</form>
 }
