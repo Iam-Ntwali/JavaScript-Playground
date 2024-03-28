@@ -109,6 +109,7 @@ h1 {
 
 .fact-form input::placeholder {
   color: #a8a29e;
+  font-size: 14px;
 }
 
 .fact-form span {
