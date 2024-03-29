@@ -23,19 +23,9 @@ const initialFacts = [
     votesFalse: 4,
     createdIn: 2021,
   },
+
   {
     id: 2,
-    text: "Millennial dads spend 3 times as much time with their kids than their fathers spent with them. In 1982, 43% of fathers had never changed a diaper. Today, that number is down to 3%",
-    source:
-      "https://www.mother.ly/parenting/millennial-dads-spend-more-time-with-their-kids",
-    category: "society",
-    votesInteresting: 11,
-    votesMindblowing: 2,
-    votesFalse: 0,
-    createdIn: 2019,
-  },
-  {
-    id: 3,
     text: "Lisbon is the capital of Portugal",
     source: "https://en.wikipedia.org/wiki/Lisbon",
     category: "society",
@@ -45,7 +35,7 @@ const initialFacts = [
     createdIn: 2015,
   },
   {
-    id: 4,
+    id: 3,
     text: "The world's largest food market is in France",
     source: "https://en.wikipedia.org/wiki/World_Food_Market",
     category: "society",
@@ -59,16 +49,18 @@ const initialFacts = [
 // < !----------------  main app component start ---------------->
 function App() {
   const [showForm, setShowForm] = useState(false);
+  const [facts, setFacts] = useState(initialFacts);
+
   return (
     // JSX fragment
     <>
-      <Header showFormState={showForm} setShowFormState={setShowForm} />
+      <Header showForm={showForm} setShowForm={setShowForm} />
 
-      {showForm ? <NewFactForm /> : null}
+      {showForm ? <NewFactForm setFacts={setFacts} /> : null}
 
       <main className='main'>
         <CategoryFilter />
-        <FactList />
+        <FactList facts={facts} />
       </main>
     </>
   );
@@ -76,9 +68,9 @@ function App() {
 // <!---------------- main end---------------->
 
 // <!---------------- components start ----------------
-function Header({ showFormState, setShowFormState }) {
+function Header({ showForm, setShowForm }) {
   return (
-    <header header className="header" >
+    <header className="header" >
       <div className="logo">
         <img
           src="/logo.png"
@@ -90,14 +82,14 @@ function Header({ showFormState, setShowFormState }) {
       <button
         id="btn__open"
         className="btn btn-large"
-        onClick={() => setShowFormState((isShowing) => !isShowing)}>
-        {showFormState ? 'Close' : 'Share a fact'}
+        onClick={() => setShowForm((isShowing) => !isShowing)}>
+        {showForm ? 'Close' : 'Share a fact'}
       </button>
     </header>
   )
 }
 
-function NewFactForm() {
+function NewFactForm({ setFacts }) {
   const [text, setText] = useState('');
   const [source, setSource] = useState('');
   const [category, setCategory] = useState('');
@@ -107,7 +99,6 @@ function NewFactForm() {
   // fn to handle submit
   function handleSubmit(e) {
     e.preventDefault();
-
     function isValidHttpsURL(text) { // Check if source is a valid URL
       let url;
       try {
@@ -118,17 +109,23 @@ function NewFactForm() {
       return url.protocol === 'https:' || url.protocol === 'http:';
     }
 
+    //input validation
     if (text && isValidHttpsURL(source) && category && textInputLimit <= 200) {
+
+      // create a new fact object
       const newFact = {
-        id: Math.round(Math.random() * 1000),
+        id: Math.round(Math.random() * 1000000),
         text,
         source,
         category,
         votesInteresting: 0,
         votesMindblowing: 0,
         votesFalse: 0,
-        createdIn: new Date().getCurrentYear(),
+        createdIn: new Date().getFullYear(),
       }
+
+      // update facts list state
+      setFacts((facts) => [...facts, newFact]);
     }
   }
 
@@ -176,10 +173,7 @@ function CategoryFilter() {
   </aside >;
 }
 
-function FactList() {
-  // Temporary
-  const facts = initialFacts;
-
+function FactList({ facts }) {
   return (
     <section>
       <ul className='facts-list'>
